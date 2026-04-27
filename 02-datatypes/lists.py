@@ -1,0 +1,21 @@
+my_cart = ["apples", "bananas", "milk"]
+my_cart.append("bread")
+print(f"my cart: {my_cart}")
+my_cart.insert(0, "ketchup")
+print(f"my cart: {my_cart}")
+my_cart.remove("bananas")
+print(f"my cart: {my_cart}")
+removed_item = my_cart.pop()
+print(f"my cart: {my_cart}")
+print(f"Removed item: {removed_item}")
+my_cart.extend(["rice", "butter"])
+print(f"my cart: {my_cart}")
+print(f"my cart: {sorted(my_cart)}")
+print(f"my cart: {sorted(my_cart)[::-1]}")
+my_cart = my_cart + ["juice", "jam"]
+print(f"my cart: {my_cart}")
+print(f"my cart like twice: {my_cart*2}")
+legumes = "tomato cucumber spinach" 
+legumes_lst = legumes.split()
+print(legumes)
+print(legumes_lst)
