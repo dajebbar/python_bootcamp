@@ -20,3 +20,8 @@ menus = {
         "kiwi": 0.80
     }
 }
+
+price_to_get_free_dessert = 5.5
+
+breakfast = input("Please choose your breakfast:(classic, energy, gourmand)  ").lower()
+
