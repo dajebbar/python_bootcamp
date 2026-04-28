@@ -1,7 +1,7 @@
 menus = {
     "classic":{
         "café": 1.50,
-        "croissant": 1.20,
+        "croissant": 3.20,
         "jus d'orange": 2.00
     },
 
@@ -15,8 +15,8 @@ menus = {
 
     "gourmand":{
         "chocolat chaud": 2.20,
-        "pain au chocolat": 1.40,
-        "tartine beurre-confiture": 1.10,
+        "pain au chocolat": 3.40,
+        "tartine beurre-confiture": 4.10,
         "kiwi": 0.80
     }
 }
