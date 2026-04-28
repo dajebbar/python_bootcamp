@@ -4,3 +4,7 @@ def verify_age(age_str):
 
     return access
 
+age = input("How old are you ? ")
+print(verify_age(age))
+
+
