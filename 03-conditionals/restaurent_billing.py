@@ -25,3 +25,8 @@ price_to_get_free_dessert = 5.5
 
 breakfast = input("Please choose your breakfast:(classic, energy, gourmand)  ").lower()
 
+print(f"Your choice was {breakfast}: {menus[breakfast]}")
+if sum(menus[breakfast].values() > price_to_get_free_dessert):
+    print("You get a free dessert!")
+else:
+    print("No free dessert this time.")
