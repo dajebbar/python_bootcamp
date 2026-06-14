@@ -13,3 +13,10 @@ def median(lst):
         return lst_sort[medium]
     else:
         return (lst_sort[medium - 1] + lst_sort[medium]) / 2
+
+
+if __name__== "__main__":
+    lst = [12,34,45]
+    print("____Test stats.py____")
+    print(mean(lst))
+    print(median(lst))
