@@ -14,7 +14,7 @@ class Temperature:
     @celsius.setter
     def celsius(self, new_temp):
         if not isinstance(new_temp, (int, float)) or new_temp < -273.15:
-            raise ValueError ("La temperature ne peut dépasser le zéro absolu")
+            raise ValueError ("La température ne peut être inférieure à -273.15°C (zéro absolu)")
         self.__celsius = new_temp
     
     #Lire la Temperature en fahrenheit
