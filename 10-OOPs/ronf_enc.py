@@ -54,3 +54,19 @@ class Temperature:
         self.celsius = (fahren - 32) * 5/9
 
 
+t = Temperature()
+t.celsius = 25
+print(f"{t.celsius}°C = {t.fahrenheit}°F")  # 25°C = 77.0°F
+
+t.fahrenheit = 100
+print(f"{t.celsius}°C = {t.fahrenheit}°F")  # 37.777...°C = 100.0°F
+
+try:
+    t.celsius = -300
+except ValueError as e:
+    print("Erreur :", e)
+
+try:
+    t.fahrenheit = -500  # Correspond à environ -295°C, donc en dessous du zéro absolu
+except ValueError as e:
+    print("Erreur :", e)
