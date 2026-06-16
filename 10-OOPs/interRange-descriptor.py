@@ -16,7 +16,7 @@ class IntegerRange:
         if instance is None:
             return self
         return instance.__dict__.get(self._key, None)
-        print(note.eleve)
+        
 
 class NoteScolaire:
     eleve = IntegerRange("note", 0, 20)
