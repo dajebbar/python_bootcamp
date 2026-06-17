@@ -61,9 +61,14 @@ class CompteSimple:
         if not new_titulaire or not new_titulaire.strip():
             raise ValueError("Le nom du titulaire est requis")
         self._titulaire = new_titulaire
-        
 
-class CompteEpargne(CompteSimple):
+
+class LoggerMixin:
+    def log(self, message):
+        print(f"[self.__class__.__name__][LOG]: {message}")
+
+
+class CompteEpargne(LoggerMixin, CompteSimple):
 
     def __init__(self, titulaire, solde=0, taux_interet=.03):
         super().__init__(titulaire, solde)
@@ -88,15 +93,18 @@ class CompteEpargne(CompteSimple):
         super().retirer(montant)
 
 
-cp = CompteEpargne("Mariana", taux_interet=0.05)
-cp.deposer(2000)
-print(cp.afficher_solde())
-cp.appliquer_interets()
-print(cp.afficher_solde())
-cp.retirer(1000)
-print(cp.afficher_solde())
-cp.retirer(2000)
-print(cp.afficher_solde())
+
+
+
+# cp = CompteEpargne("Mariana", taux_interet=0.05)
+# cp.deposer(2000)
+# print(cp.afficher_solde())
+# cp.appliquer_interets()
+# print(cp.afficher_solde())
+# cp.retirer(1000)
+# print(cp.afficher_solde())
+# cp.retirer(2000)
+# print(cp.afficher_solde())
 
 # c1 = CompteSimple("Aleina", 430)
 # c2 = CompteSimple("Amandine")
