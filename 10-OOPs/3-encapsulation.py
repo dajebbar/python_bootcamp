@@ -3,7 +3,7 @@ class CompteSimple:
     nb_comptes = 0
     
     def __init__(self, titulaire, solde_initial=0):
-        self._titulaire = titulaire
+        self.titulaire = titulaire
         self._solde = solde_initial
         CompteSimple.nb_comptes += 1
     
@@ -17,9 +17,12 @@ class CompteSimple:
             
     
     def retirer(self, montant):
+
         test_montant = CompteSimple.est_montant_valide(montant)
+
         if montant > self._solde:
             print(f"Votre solde de {self._solde}{CompteSimple.devise} est insuffisant pour l'opération")
+        
         elif test_montant:
             self._solde -= montant
             print(f"{montant} {CompteSimple.devise} est retiré. Votre nouveau solde est {self._solde} {CompteSimple.devise}")
@@ -60,21 +63,56 @@ class CompteSimple:
         self._titulaire = new_titulaire
         
 
-c1 = CompteSimple("Aleina", 430)
-c2 = CompteSimple("Amandine")
+class CompteEpargne(CompteSimple):
 
-print(c1.solde)
-try:
-    c2.solde = 1000
-except AttributeError as e:
-    print(e)
+    def __init__(self, titulaire, solde=0, taux_interet=.03):
+        super().__init__(titulaire, solde)
+        self._taux_interet = taux_interet
     
-try:
-    c1.titulaire = " "
-except ValueError as e:
-    print(e)
+    def appliquer_interets(self):
+        self._solde = self._solde * (1 + self._taux_interet)
+    
+    def retirer(self, montant):
+        # test validation du montant
+        if not self.est_montant_valide(montant):
+            print("Vous ne pouvez pas rettirer un montant négatif")
+            return
+        
+        # cas du découvert
+        if self._solde - montant < 0:
+            print("Attention votre solde après retrait sera négatif (Découvert)")
+            self._solde -= montant
+            print(f"{montant}{self.devise} est retirer. Votre nouveau solde est {self._solde}{self.devise}")
+            return
+        # le cas normal
+        return super().retirer(montant)
 
-c1.retirer(6)
-c2.deposer(100)
-print(c2.afficher_solde())
+
+cp = CompteEpargne("Mariana", taux_interet=0.05)
+cp.deposer(2000)
+print(cp.afficher_solde())
+cp.appliquer_interets()
+print(cp.afficher_solde())
+cp.retirer(1000)
+print(cp.afficher_solde())
+cp.retirer(2000)
+print(cp.afficher_solde())
+
+# c1 = CompteSimple("Aleina", 430)
+# c2 = CompteSimple("Amandine")
+
+# print(c1.solde)
+# try:
+#     c2.solde = 1000
+# except AttributeError as e:
+#     print(e)
+    
+# try:
+#     c1.titulaire = " "
+# except ValueError as e:
+#     print(e)
+
+# c1.retirer(6)
+# c2.deposer(100)
+# print(c2.afficher_solde())
 
