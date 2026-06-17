@@ -65,7 +65,7 @@ class CompteSimple:
 
 class LoggerMixin:
     def log(self, message):
-        print(f"[self.__class__.__name__][LOG]: {message}")
+        print(f"[{self.__class__.__name__}][LOG]: {message}")
 
 
 class CompteEpargne(LoggerMixin, CompteSimple):
@@ -76,6 +76,11 @@ class CompteEpargne(LoggerMixin, CompteSimple):
     
     def appliquer_interets(self):
         self._solde = self._solde * (1 + self._taux_interet)
+        self.log(f"Taux d'interêt de {self._taux_interet} effectuer. Nouveau solde : {self._solde}{self.devise}")
+
+    def deposer(self, montant):
+        super().deposer(montant)
+        self.log(f"Dépôt de {montant}{self.devise} effectué, nouveau solde : {self._solde}{self.devise}")  
     
     def retirer(self, montant):
         # test validation du montant
@@ -88,23 +93,26 @@ class CompteEpargne(LoggerMixin, CompteSimple):
             print("Attention votre solde après retrait sera négatif (Découvert)")
             self._solde -= montant
             print(f"{montant}{self.devise} est retirer. Votre nouveau solde est {self._solde}{self.devise}")
+            self.log(f"Retrait (découvert) de {montant}{self.devise} effectué, nouveau solde : {self._solde}{self.devise}")
             return
+        
         # le cas normal
         super().retirer(montant)
+        self.log(f"Retrait de {montant}{self.devise} effectué, nouveau solde : {self._solde}{self.devise}")
+
+    
 
 
 
-
-
-# cp = CompteEpargne("Mariana", taux_interet=0.05)
-# cp.deposer(2000)
-# print(cp.afficher_solde())
-# cp.appliquer_interets()
-# print(cp.afficher_solde())
-# cp.retirer(1000)
-# print(cp.afficher_solde())
-# cp.retirer(2000)
-# print(cp.afficher_solde())
+cp = CompteEpargne("Mariana", taux_interet=0.05)
+cp.deposer(2000)
+print(cp.afficher_solde())
+cp.appliquer_interets()
+print(cp.afficher_solde())
+cp.retirer(1000)
+print(cp.afficher_solde())
+cp.retirer(2000)
+print(cp.afficher_solde())
 
 # c1 = CompteSimple("Aleina", 430)
 # c2 = CompteSimple("Amandine")
