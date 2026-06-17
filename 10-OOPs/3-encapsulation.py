@@ -85,7 +85,7 @@ class CompteEpargne(CompteSimple):
             print(f"{montant}{self.devise} est retirer. Votre nouveau solde est {self._solde}{self.devise}")
             return
         # le cas normal
-        return super().retirer(montant)
+        super().retirer(montant)
 
 
 cp = CompteEpargne("Mariana", taux_interet=0.05)
