@@ -37,6 +37,38 @@ class Vecteur:
         return f"Vecteur({self.x}, {self.y})"
 
 
+class Vecteur:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+    
+    def __add__(self, autre):
+        if isinstance(autre, Vecteur):
+            return Vecteur(self.x + autre.x, self.y + autre.y)
+        elif isinstance(autre, (int, float)):
+            return Vecteur(self.x + autre, self.y)
+        else:
+            return NotImplemented
+            
+        
+    
+    def __radd__(self, autre):
+        return self.__add__(autre)
+    
+    def __repr__(self):
+        return f"Vecteur({self.x}, {self.y})"
+        
+
+v = Vecteur(2, -5)
+v2 = Vecteur(3, 1)
+res = v + v2
+print(res)
+try:
+    v3 = 5 + v
+    print(v3)
+except TypeError as e:
+    print(f"Error: {e}")
+
+
 
 pt = Point(3,4)
 print(pt)
